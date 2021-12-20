@@ -1,27 +1,29 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MAT_DIALOG_DATA  } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { PokemonsComponent } from './pokemons/pokemons.component';
-import { DialogComponent } from './dialog/dialog.component';
+import { DialogDetailsComponent } from './dialog-details/dialog-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PokemonsComponent,
-    DialogComponent,    
+    DialogDetailsComponent,
+
   ],
   entryComponents:[
-    DialogComponent,    
+    DialogDetailsComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
