@@ -6,9 +6,8 @@
 <div class="grid">
 
 <div class="pokemon" *ngFor="let item of pokemonsList">
-<button mat-button (click)="showDetails(item)">
+<button (click)="onOpenDialog(item)">
   <img [src]="item.sprites.front_default" alt="Pokemon">
-
 </button>
 
 </div>

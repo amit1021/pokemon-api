@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-pokemons',
@@ -14,7 +16,8 @@ export class PokemonsComponent implements OnInit {
 
 
   constructor(
-    private dataService: DataService
+    private dataService: DataService,
+    public matDialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +36,15 @@ export class PokemonsComponent implements OnInit {
     console.log(this.name);
     console.log(this.type);
 
+  }
+
+  onOpenDialog(pokemon: any) : void{
+    this.name = pokemon.name;
+    this.type = pokemon.types[0].type.name;
+    console.log(this.name);
+    console.log(this.type);
+    let x = this.matDialog.open(DialogComponent);
+    
   }
 
 }
