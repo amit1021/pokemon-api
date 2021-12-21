@@ -1,18 +1,17 @@
 <div class="first">
+
+
     <header class="header">
-      <h1>Pokemon API</h1>
-      </header>
+      <img class="headerImg" src="assets/Images/pokemon.jpg" alt="Italian Trulli">
+   </header>
 
   <div class="grid">
-  <div class="pokemon" *ngFor="let item of pokemonsList">
-  <button class="button" mat-raised-button (click)="onOpenDialog(item)">
-    <img class="img" [src]="item.sprites.front_default" alt="Pokemon">
-  </button>
-
+    <div class="pokemon" *ngFor="let item of pokemonsList">
+      <button class="button" mat-raised-button (click)="onOpenDialog(item)">
+        <img class="img" [src]="item.sprites.front_default" alt="Pokemon">
+      </button>
+    </div>
   </div>
-
-</div>
-
 </div>
 
 

@@ -4,12 +4,14 @@
   font-size: 23px;
 }
 .first .header{
-  padding: 40px;
+  padding: 0;
   text-align: center;
   background: rgb(199, 196, 196);
-  color: rgb(3, 3, 3);
-  font-size: large;
 }
+.first .header .headerImg{
+  width: 400px;
+}
+
 
 .first .grid{
   display: grid;
@@ -23,7 +25,7 @@
   height: 100px;
   box-shadow:  1px 2px 5px rgba(0, 0, 0, 0);
   padding: 30px;
-  
+
 }
 .first .grid .pokemon .button {
   padding: 10px 24px;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 @Component({
   selector: 'app-pokemons',
@@ -23,6 +23,7 @@ export class PokemonsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.playAudio();
     this.dataService.getPokemons().subscribe((response: any) =>{
       console.log(response)
       response.results.forEach((element: { name: string; }) => {
@@ -61,25 +62,29 @@ export class PokemonsComponent implements OnInit {
     //games
     this.games = []
     for (let i = 0; i < pokemon.game_indices.length; i++) {
-      this.moves.push(pokemon.game_indices[i].move.name);
+      this.games.push(pokemon.game_indices[i].version.name);
+      console.log("this is games:", pokemon.game_indices[i].version.name)
     }
     console.log(pokemon);
 
+
     this.dialog.open(DialogComponent,  {
-      height: 'auto',
-      width: 'auto',
-      backdropClass: 'BackgroundColor', // 
+      backdropClass : 'backdropBackground',
       data:{
         name: pokemon.name,
         type: this.type,
         moves: this.moves,
         location: this.location,
         evolves: this.evolves_to,
-        image: pokemon.sprites.front_default
+        image: pokemon.sprites.front_default,
+        games: this.games
       }},
      );
-
-
   }
-
+  playAudio(){
+    let audio = new Audio();
+    audio.src = "../../../assets/audio/song.mp3";
+    audio.load();
+    audio.play();
+  }
 }
