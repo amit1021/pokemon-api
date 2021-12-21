@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogDetailsComponent } from '../dialog-details/dialog-details.component';
+import { DialogComponent } from '../dialog/dialog.component';
 @Component({
   selector: 'app-pokemons',
   templateUrl: './pokemons.component.html',
@@ -72,7 +72,7 @@ export class PokemonsComponent implements OnInit {
 
     console.log(pokemon);
 
-    this.dialog.open(DialogDetailsComponent,  {
+    this.dialog.open(DialogComponent,  {
       height: '400px',
       width: '600px',
       data:{
@@ -81,6 +81,7 @@ export class PokemonsComponent implements OnInit {
         moves: this.moves,
         location: this.location,
         evolves: this.evolves_to,
+        image: pokemon.sprites.front_default
       }},
      );
 

@@ -6,17 +6,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { PokemonsComponent } from './pokemons/pokemons.component';
-import { DialogDetailsComponent } from './dialog-details/dialog-details.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PokemonsComponent,
-    DialogDetailsComponent,
+    DialogComponent,
 
   ],
   entryComponents:[
-    DialogDetailsComponent
+    DialogComponent
   ],
   imports: [
     BrowserModule,
