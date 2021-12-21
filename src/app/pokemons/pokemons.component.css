@@ -23,6 +23,7 @@
   height: 100px;
   box-shadow:  1px 2px 5px rgba(0, 0, 0, 0);
   padding: 30px;
+  
 }
 .first .grid .pokemon .button {
   padding: 10px 24px;
@@ -32,3 +33,4 @@
 .first .grid .pokemon .button .img{
     width: 130px;
 }
+

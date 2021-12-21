@@ -11,10 +11,11 @@ export class PokemonsComponent implements OnInit {
 
   pokemonsList: any[] = [];
   name!: string;
-  type : any[] = [];
+  type! : string;
   moves: any[] = [];
   location: any[] = [];
   evolves_to: any[] = [];
+  games: any[] = [];
 
   constructor(
     private dataService: DataService,
@@ -34,10 +35,8 @@ export class PokemonsComponent implements OnInit {
  onOpenDialog(pokemon: any) : void{
     this.name = pokemon.name;
 
-    //Types
-    for (let i = 0; i < pokemon.types.length; i++) {
-      this.type.push(pokemon.types[i].type.name);
-    }
+    //Type
+      this.type = pokemon.types[0].type.name;
     //moves
     this.moves = []
     for (let i = 0; i < pokemon.moves.length; i++) {
@@ -59,13 +58,17 @@ export class PokemonsComponent implements OnInit {
         this.evolves_to.push(response.chain.evolves_to[i].species.name);
       }
     });
-
+    //games
+    this.games = []
+    for (let i = 0; i < pokemon.game_indices.length; i++) {
+      this.moves.push(pokemon.game_indices[i].move.name);
+    }
     console.log(pokemon);
 
     this.dialog.open(DialogComponent,  {
-      height: '400px',
-      width: '600px',
-      
+      height: 'auto',
+      width: 'auto',
+      backdropClass: 'BackgroundColor', // 
       data:{
         name: pokemon.name,
         type: this.type,

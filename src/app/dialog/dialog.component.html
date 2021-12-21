@@ -1,24 +1,35 @@
 
+  <div class="dialog" >
+
     <header>
       <img class="img" [src]="data.image" alt="Pokemon">
     </header>
-    <p>{{data.name}}</p>
 
-    <h1>Types</h1>
-    <tr *ngFor="let type of data.type">{{ type }} </tr>
+    <h1 class="name" >
+      {{data.name}}
+    </h1>
 
-    <h1>Moves</h1>
+    <p  class="type" >
+      Type: {{ data.type }}
+    </p>
+
+
+    <div calss="moves" *ngIf="data?.moves?.length > 0">
+      <p>Moves</p>
     <tr *ngFor="let move of data.moves">{{ move }} -> </tr>
+    </div>
 
-    <h1>location</h1>
-    <li *ngFor="let location of data.location">{{ location }}</li>
+    <div class="location" *ngIf="data?.location?.length > 0">
+      <p class="headerLocation">location</p>
+      <li class="locationFor" *ngFor="let location of data.location">{{ location }}</li>
+    </div>
 
     <h1>evolves to</h1>
     <li *ngFor="let e of data.evolves">{{ e }}</li>
 
 
 
-
+  </div>
 
 
 
