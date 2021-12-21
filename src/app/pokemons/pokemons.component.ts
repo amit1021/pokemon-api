@@ -31,16 +31,6 @@ export class PokemonsComponent implements OnInit {
       });
     });
   }
-
-  showDetails(pokemon: any){
-    this.name = pokemon.name;
-    this.type = pokemon.types[0].type.name;
-
-    console.log(this.name);
-    console.log(this.type);
-
-  }
-
  onOpenDialog(pokemon: any) : void{
     this.name = pokemon.name;
 
@@ -75,6 +65,7 @@ export class PokemonsComponent implements OnInit {
     this.dialog.open(DialogComponent,  {
       height: '400px',
       width: '600px',
+      
       data:{
         name: pokemon.name,
         type: this.type,
