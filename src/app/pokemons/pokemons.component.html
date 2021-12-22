@@ -2,14 +2,18 @@
 
 
   <header class="header">
-    <img class="headerImg" src="assets/Images/pokemon.jpg" alt="Italian Trulli">
+      <img class="ImgPok" src="assets/Images/pokemon.jpg" alt="Italian Trulli">
+
+    <div class="favorites">
+      <button class="buttonFav" mat-raised-button (click)="onOpenFavorites()">
+        <mat-icon>favorite icon</mat-icon>
+      </button>
+    </div>
+
   </header>
 
-  <video
-  title="Advertisement"
-  src="assets/audio/songCut.wav"
-  autoplay="true"
-  muted="muted"></video>
+
+
 
   <div class="grid">
     <div class="pokemon" *ngFor="let item of pokemonsList">
@@ -18,6 +22,14 @@
       </button>
     </div>
   </div>
+
+  <video
+  title="Advertisement"
+  src="assets/audio/songCut.wav"
+  autoplay="true"
+  muted="muted">
+  </video>
+
 </div>
 
 

@@ -5,13 +5,16 @@
 }
 .first .header{
   padding: 0;
-  text-align: center;
   background: rgb(199, 196, 196);
+  display: flex;
+  justify-content: center;
 }
-.first .header .headerImg{
+.first .header .ImgPok{
   width: 400px;
 }
-
+.first .header .favorites .buttonFav {
+  padding: 10px 24px;
+}
 
 .first .grid{
   display: grid;

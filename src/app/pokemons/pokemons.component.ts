@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
+
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-pokemons',
   templateUrl: './pokemons.component.html',
@@ -20,7 +24,8 @@ export class PokemonsComponent implements OnInit {
 
   constructor(
     private dataService: DataService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -88,19 +93,21 @@ export class PokemonsComponent implements OnInit {
     });
 
   }
-  playAudio(){
-    let audio = new Audio();
-    audio.src = "assets/audio/song.wav";
-    audio.load();
-    var promise = audio.play();
-    if (promise !== undefined) {
-        promise.then(_ => {
-          // Autoplay started!
-        }).catch(error => {
-          console.log(error)
-        });
-    }
+  // playAudio(){
+  //   let audio = new Audio();
+  //   audio.src = "assets/audio/song.wav";
+  //   audio.load();
+  //   var promise = audio.play();
+  //   if (promise !== undefined) {
+  //       promise.then(_ => {
+  //         // Autoplay started!
+  //       }).catch(error => {
+  //         console.log(error)
+  //       });
+  //   }
 
+  onOpenFavorites() : void{
+    this.router.navigate([`favorites`])
   }
 
   playSounds(name: string){
