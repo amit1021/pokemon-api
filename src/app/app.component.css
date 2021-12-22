@@ -1,0 +1,19 @@
+
+
+.header{
+  padding: 0;
+  background: rgb(199, 196, 196);
+  display: flex;
+  justify-content: center;
+
+}
+.header .ImgPok{
+  width: 400px;
+
+}
+
+.header .favorites .buttonFav {
+  padding: 5px 10px;
+  background-color: lavenderblush;
+
+}

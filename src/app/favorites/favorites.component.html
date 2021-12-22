@@ -1,1 +1,7 @@
-<p>favorites works!</p>
+<div class="grid">
+  <div class="pokemon" *ngFor="let item of Pokemons">
+    <button class="button" mat-raised-button (click)="onOpenDialog(item)">
+      <img class="img" [src]="item.sprites.front_default" alt="Pokemon">
+    </button>
+  </div>
+</div>

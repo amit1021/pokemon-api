@@ -1,22 +1,11 @@
 <div class="first">
 
-
-  <header class="header">
-      <img class="ImgPok" src="assets/Images/pokemon.jpg" alt="Italian Trulli">
-
-    <div class="favorites">
-      <button class="buttonFav" mat-raised-button (click)="onOpenFavorites()">
-        <mat-icon>favorite icon</mat-icon>
-      </button>
-    </div>
-
-  </header>
-
-
-
-
   <div class="grid">
     <div class="pokemon" *ngFor="let item of pokemonsList">
+      <button class="buttonFavor" mat-raised-button (click)="addToFavor(item)">
+        <mat-icon *ngIf="contains(item)">favorite_border</mat-icon>
+        <mat-icon *ngIf="contains(item)!=true">favorite icon</mat-icon>
+      </button>
       <button class="button" mat-raised-button (click)="onOpenDialog(item)">
         <img class="img" [src]="item.sprites.front_default" alt="Pokemon">
       </button>
@@ -24,6 +13,7 @@
   </div>
 
   <video
+  hidden="true"
   title="Advertisement"
   src="assets/audio/songCut.wav"
   autoplay="true"
@@ -31,5 +21,3 @@
   </video>
 
 </div>
-
-

@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { DataService } from '../services/data.service';
-import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import { MatDialog} from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
-
-import { Router } from '@angular/router';
-
+import {EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-pokemons',
@@ -12,6 +10,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./pokemons.component.css']
 })
 export class PokemonsComponent implements OnInit {
+
+  @Output() pokemonFavoreEvent = new EventEmitter();
+
+  pokemonsListFavore: any[] = [];
 
   pokemonsList: any[] = [];
   name!: string;
@@ -25,12 +27,10 @@ export class PokemonsComponent implements OnInit {
   constructor(
     private dataService: DataService,
     public dialog: MatDialog,
-    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.dataService.getPokemons().subscribe((response: any) =>{
-      console.log(response)
       response.results.forEach((element: { name: string; }) => {
                 this.dataService.getDataByName(element.name).subscribe((Pokemon: any) =>{
                 this.pokemonsList.push(Pokemon);
@@ -41,7 +41,6 @@ export class PokemonsComponent implements OnInit {
   }
  onOpenDialog(pokemon: any) : void{
     this.name = pokemon.name;
-    console.log(this.name);
     //Type
       this.type = pokemon.types[0].type.name;
     //moves
@@ -69,7 +68,6 @@ export class PokemonsComponent implements OnInit {
     for (let i = 0; i < pokemon.game_indices.length; i++) {
       this.games.push(pokemon.game_indices[i].version.name);
     }
-    console.log(pokemon);
 
 
     this.playSounds(this.name);
@@ -83,7 +81,8 @@ export class PokemonsComponent implements OnInit {
         location: this.location,
         evolves: this.evolves_to,
         image: pokemon.sprites.front_default,
-        games: this.games
+        games: this.games,
+        pokemon: pokemon
       }},
      );
      this.dialog.afterAllClosed.subscribe(result => {
@@ -93,22 +92,7 @@ export class PokemonsComponent implements OnInit {
     });
 
   }
-  // playAudio(){
-  //   let audio = new Audio();
-  //   audio.src = "assets/audio/song.wav";
-  //   audio.load();
-  //   var promise = audio.play();
-  //   if (promise !== undefined) {
-  //       promise.then(_ => {
-  //         // Autoplay started!
-  //       }).catch(error => {
-  //         console.log(error)
-  //       });
-  //   }
 
-  onOpenFavorites() : void{
-    this.router.navigate([`favorites`])
-  }
 
   playSounds(name: string){
     this.audio = new Audio();
@@ -159,4 +143,14 @@ export class PokemonsComponent implements OnInit {
     this.audio .load();
     this.audio .play();
   }
+
+  addToFavor(pokemon: any) : void{
+    this.pokemonFavoreEvent.emit(pokemon);
+    this.pokemonsListFavore.push(pokemon);
+  }
+
+  contains(pokemon:any): boolean{
+    return !this.pokemonsListFavore.includes(pokemon);
+  }
+
 }

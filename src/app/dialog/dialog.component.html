@@ -3,18 +3,14 @@
 
     <div class="headerImg">
       <img class="img" [src]="data.image" alt="Pokemon">
-
-    <h1 class="name" >
-      {{data.name}}
-    </h1>
-
+      <h1 class="name" >
+        {{data.name}}
+      </h1>
     </div>
 
 
 
 <div class="details">
-
-  <!-- <img class="image" src="assets/Images/Background.jpg" alt="Pokemon"> -->
 
     <div  class="type" >
       <a class="headerType">Type: </a>
@@ -24,12 +20,18 @@
 
     <div class="moves" *ngIf="data?.moves?.length > 0">
       <a class="headerMoves">Moves:   </a>
-      <p class="movesFor"  *ngFor="let move of data.moves">{{ move }} --> </p>
+      <p class="movesFor"  *ngFor="let move of data.moves; let i = index" >
+        <a *ngIf="i!=data.moves.length-1" >{{ move }} --></a>
+        <a *ngIf="i==data.moves.length-1" >{{ move }}</a>
+      </p>
     </div>
 
     <div class="location" *ngIf="data?.location?.length > 0">
       <a class="headerLocation">Location:   </a>
-      <li class="locationFor" *ngFor="let location of data.location">{{ location }}, </li>
+      <p class="locationFor" *ngFor="let location of data.location; let i = index">
+        <a *ngIf="i!=data.location.length-1" >{{ location }}, </a>
+        <a *ngIf="i==data.location.length-1" >{{ location }} </a>
+      </p>
     </div>
 
     <div class="evolves" *ngIf="data?.evolves?.length > 0">
@@ -39,7 +41,10 @@
 
     <div class="games" *ngIf="data?.games?.length > 0">
     <a class="headerGames">Games:   </a>
-    <li class="gamesFor" *ngFor="let g of data.games">{{ g }},</li>
+    <p class="gamesFor" *ngFor="let g of data.games; let i = index">
+      <a *ngIf="i!=data.games.length-1" >{{ g }}, </a>
+      <a *ngIf="i==data.games.length-1" >{{ g }} </a>
+    </p>
     </div>
   </div>
   </mat-dialog-content>
