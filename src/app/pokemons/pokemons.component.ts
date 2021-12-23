@@ -1,8 +1,8 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { DataService } from '../services/data.service';
-import { MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
-import {EventEmitter} from '@angular/core';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-pokemons',
@@ -12,18 +12,21 @@ import {EventEmitter} from '@angular/core';
 export class PokemonsComponent implements OnInit {
 
   @Output() pokemonFavoreEvent = new EventEmitter();
-  @Input() Pokemonsfavore :any[]=[];
+  @Output() pokemonFavoreEventDelete = new EventEmitter();
+
+  @Input() Pokemonsfavore: any[] = [];
 
   pokemonsListFavore: any[] = [];
 
-  pokemonsList: any[] = [];
+  @Input() pokemonsList: any[] = [];
+
   name!: string;
-  type! : string;
+  type!: string;
   moves: any[] = [];
   location: any[] = [];
   evolves_to: any[] = [];
   games: any[] = [];
-  audio: any ;
+  audio: any;
 
   constructor(
     private dataService: DataService,
@@ -31,31 +34,19 @@ export class PokemonsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.dataService.getPokemons().subscribe((response: any) =>{
-      response.results.forEach((element: { name: string; }) => {
-                this.dataService.getDataByName(element.name).subscribe((Pokemon: any) =>{
-                this.pokemonsList.push(Pokemon);
-          });
-      });
-   });
-
-    console.log("lennnn", this.pokemonsListFavore.length);
-    console.log("lennn346453n", this.Pokemonsfavore.length);
-    for (const p of this.Pokemonsfavore) {
-      this.addToFavor(p);
-    }
   }
- onOpenDialog(pokemon: any) : void{
+
+  onOpenDialog(pokemon: any): void {
     this.name = pokemon.name;
     //Type
-      this.type = pokemon.types[0].type.name;
+    this.type = pokemon.types[0].type.name;
     //moves
     this.moves = []
     for (let i = 0; i < pokemon.moves.length; i++) {
       this.moves.push(pokemon.moves[i].move.name);
     }
     //locations
-    this.dataService.getDataByArea(pokemon.location_area_encounters).subscribe((response: any) =>{
+    this.dataService.getDataByArea(pokemon.location_area_encounters).subscribe((response: any) => {
       this.location = []
       for (let i = 0; i < response.length; i++) {
         this.location.push(response[i].location_area.name);
@@ -63,7 +54,7 @@ export class PokemonsComponent implements OnInit {
     });
 
     //evolution
-    this.dataService.getDataEvolution(pokemon.id).subscribe((response: any) =>{
+    this.dataService.getDataEvolution(pokemon.id).subscribe((response: any) => {
       this.evolves_to = []
       for (let i = 0; i < response.chain.evolves_to.length; i++) {
         this.evolves_to.push(response.chain.evolves_to[i].species.name);
@@ -77,9 +68,9 @@ export class PokemonsComponent implements OnInit {
 
     this.playSounds(this.name);
 
-    this.dialog.open(DialogComponent,  {
-      backdropClass : 'backdropBackground',
-      data:{
+    this.dialog.open(DialogComponent, {
+      backdropClass: 'backdropBackground',
+      data: {
         name: pokemon.name,
         type: this.type,
         moves: this.moves,
@@ -88,9 +79,10 @@ export class PokemonsComponent implements OnInit {
         image: pokemon.sprites.front_default,
         games: this.games,
         pokemon: pokemon
-      }},
-     );
-     this.dialog.afterAllClosed.subscribe(result => {
+      }
+    },
+    );
+    this.dialog.afterAllClosed.subscribe(result => {
       this.audio.pause();
       this.audio.currentTime = 0;
 
@@ -98,82 +90,67 @@ export class PokemonsComponent implements OnInit {
 
   }
 
-
-  playSounds(name: string){
+  playSounds(name: string) {
     this.audio = new Audio();
     switch (name) {
       case "bulbasaur":
-        this.audio .src = "assets/audio/Bulbasaur.mp3";
+        this.audio.src = "assets/audio/Bulbasaur.mp3";
         break;
       case "ivysaur":
-        this.audio .src = "assets/audio/Ivysaur.mp3";
-          break;
+        this.audio.src = "assets/audio/Ivysaur.mp3";
+        break;
       case "pikachu":
-        this.audio .src = "assets/audio/PIKACHU.wav";
-          break;
+        this.audio.src = "assets/audio/PIKACHU.wav";
+        break;
       case "charmeleon":
-        this.audio .src = "assets/audio/Charmeleon.mp3";
+        this.audio.src = "assets/audio/Charmeleon.mp3";
         break;
 
       case "blastoise":
-        this.audio .src = "assets/audio/Blastoise.mp3";
+        this.audio.src = "assets/audio/Blastoise.mp3";
         break;
       case "charizard":
-        this.audio .src = "assets/audio/Charizard.mp3";
+        this.audio.src = "assets/audio/Charizard.mp3";
         break;
       case "charmander":
-        this.audio .src = "assets/audio/Charmander.mp3";
+        this.audio.src = "assets/audio/Charmander.mp3";
         break;
       case "wartortle":
-        this.audio .src = "assets/audio/Wartortle.mp3";
+        this.audio.src = "assets/audio/Wartortle.mp3";
         break;
       case "squirtle":
-        this.audio .src = "assets/audio/Squirtle.mp3";
+        this.audio.src = "assets/audio/Squirtle.mp3";
         break;
       case "pidgeotto":
-        this.audio .src = "assets/audio/Pidgeot.mp3";
+        this.audio.src = "assets/audio/Pidgeot.mp3";
         break;
       case "butterfree":
-        this.audio .src = "assets/audio/Butterfree.mp3";
+        this.audio.src = "assets/audio/Butterfree.mp3";
         break;
       case "caterpie":
-        this.audio .src = "assets/audio/Caterpie.wav";
+        this.audio.src = "assets/audio/Caterpie.wav";
         break;
       case "metapod":
-        this.audio .src = "assets/audio/Metapod.mp3";
+        this.audio.src = "assets/audio/Metapod.mp3";
         break;
       default:
         break;
     }
-    this.audio .load();
-    this.audio .play();
+    this.audio.load();
+    this.audio.play();
   }
 
-   addToFavor(pokemon: any): void {
-    if(this.containsInList(this.pokemonsListFavore, pokemon) && this.containsInList(this.Pokemonsfavore,pokemon)){
-      // const index: number = this.pokemonsListFavore.indexOf(pokemon);
-      // delete this.pokemonsListFavore[index];
-      // this.pokemonFavoreEvent.emit(pokemon);
+  addToFavor(pokemon: any): void {
+    if (this.Pokemonsfavore.includes(pokemon)) {
+      this.pokemonFavoreEventDelete.emit(pokemon);
       return;
     }
-    else if(this.containsInList(this.Pokemonsfavore,pokemon)){
-      this.pokemonsListFavore.push(pokemon);
-      return;
-    }
+
     this.pokemonFavoreEvent.emit(pokemon);
-    this.pokemonsListFavore.push(pokemon);
+    console.log("Sfsdf", this.Pokemonsfavore.length);
   }
 
-  contains(pokemon:any): boolean{
-    return (!this.containsInList(this.pokemonsListFavore, pokemon)) || (!this.containsInList(this.Pokemonsfavore, pokemon));
-  }
-
-  containsInList(list:any[], pokemon:any): boolean{
-    for (const p of list) {
-      if(p.name == pokemon.name){
-        return true;
-      }
-    }
-    return false;
+  contains(pokemon: any): boolean {
+    return (!this.Pokemonsfavore.includes(pokemon));
   }
 }

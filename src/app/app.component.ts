@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataService } from './services/data.service';
 
 @Component({
   selector: 'app-root',
@@ -8,29 +9,47 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'pokemon-api';
   displayMain: boolean = true;
-  displayFavorites:boolean = false;
+  displayFavorites: boolean = false;
 
-  pokemonsListFavore : any[] = [];
+  pokemonsListFavore: any[] = [];
+  pokemonsList: any[] = [];
 
-  receivePokemon($event:any){
-    if(this.pokemonsListFavore.includes($event)){
-      // const index: number = this.pokemonsListFavore.indexOf($event);
-      // delete this.pokemonsListFavore[index];
+  constructor(private dataService: DataService) { }
 
-      return;
-    }
-    this.pokemonsListFavore.push($event);
+  ngOnInit(): void {
+    this.getPokemonsFromServer();
   }
 
-  onOpenFavorites() : void{
-    if(this.displayMain == false){
+  receivePokemon($event: any) {
+    if (!this.pokemonsListFavore.includes($event)) {
+      this.pokemonsListFavore.push($event);
+    }
+  }
+
+  receivePokemonToDelete($event: any) {
+    const index: number = this.pokemonsListFavore.indexOf($event);
+    delete this.pokemonsListFavore[index];
+  }
+
+  onOpenFavorites(): void {
+    if (this.displayMain == false) {
       this.displayMain = true;
       this.displayFavorites = false;
     }
-    else{
+    else {
       this.displayMain = false;
       this.displayFavorites = true;
     }
+  }
+
+  getPokemonsFromServer() {
+    this.dataService.getPokemons().subscribe((response: any) => {
+      response.results.forEach((element: { name: string; }) => {
+        this.dataService.getDataByName(element.name).subscribe((Pokemon: any) => {
+          this.pokemonsList.push(Pokemon);
+        });
+      });
+    });
   }
 
 }

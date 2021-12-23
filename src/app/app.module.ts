@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { MatDialogModule  } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatIconModule} from '@angular/material/icon'
+import { MatIconModule } from '@angular/material/icon'
 import { AppComponent } from './app.component';
 import { PokemonsComponent } from './pokemons/pokemons.component';
 import { DialogComponent } from './dialog/dialog.component';
@@ -17,7 +17,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
     FavoritesComponent,
 
   ],
-  entryComponents:[
+  entryComponents: [
     DialogComponent
   ],
   imports: [
