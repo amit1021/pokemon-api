@@ -1,20 +1,22 @@
 
+<div class="main">
+
+<div class="favorites">
+  <button class="buttonFav" mat-raised-button (click)="onOpenFavorites()">
+    <mat-icon *ngIf="displayMain">favorite icon</mat-icon>
+    <mat-icon *ngIf="displayFavorites">arrow_forward</mat-icon>
+  </button>
+</div>
+
 <header class="header">
     <img class="ImgPok" src="assets/Images/pokemon.jpg" alt="Italian Trulli">
-
-    <div class="favorites">
-      <button class="buttonFav" mat-raised-button (click)="onOpenFavorites()">
-        <mat-icon *ngIf="displayMain">favorite icon</mat-icon>
-        <mat-icon *ngIf="displayFavorites">arrow_forward</mat-icon>
-      </button>
-    </div>
-
 </header>
 
 <div id="comp-render" *ngIf="displayMain">
-    <app-pokemons (pokemonFavoreEvent)="receivePokemon($event)"></app-pokemons>
+    <app-pokemons (pokemonFavoreEvent)="receivePokemon($event)" [Pokemonsfavore]="pokemonsListFavore"></app-pokemons>
 </div>
 
 <div id="comp-render" *ngIf="displayFavorites">
   <app-favorites [Pokemons]="pokemonsListFavore"></app-favorites>
+</div>
 </div>

@@ -1,5 +1,7 @@
 
-
+.main{
+  background-color:  azure;
+}
 .header{
   padding: 0;
   background: rgb(199, 196, 196);
@@ -11,8 +13,11 @@
   width: 400px;
 
 }
+.favorites{
+  background-color: rgb(199, 196, 196);
 
-.header .favorites .buttonFav {
+}
+.favorites .buttonFav {
   padding: 5px 10px;
   background-color: lavenderblush;
 

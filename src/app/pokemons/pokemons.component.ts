@@ -12,6 +12,7 @@ import {EventEmitter} from '@angular/core';
 export class PokemonsComponent implements OnInit {
 
   @Output() pokemonFavoreEvent = new EventEmitter();
+  @Input() Pokemonsfavore :any[]=[];
 
   pokemonsListFavore: any[] = [];
 
@@ -36,8 +37,13 @@ export class PokemonsComponent implements OnInit {
                 this.pokemonsList.push(Pokemon);
           });
       });
-    });
-    // this.playAudio()
+   });
+
+    console.log("lennnn", this.pokemonsListFavore.length);
+    console.log("lennn346453n", this.Pokemonsfavore.length);
+    for (const p of this.Pokemonsfavore) {
+      this.addToFavor(p);
+    }
   }
  onOpenDialog(pokemon: any) : void{
     this.name = pokemon.name;
@@ -68,7 +74,6 @@ export class PokemonsComponent implements OnInit {
     for (let i = 0; i < pokemon.game_indices.length; i++) {
       this.games.push(pokemon.game_indices[i].version.name);
     }
-
 
     this.playSounds(this.name);
 
@@ -144,13 +149,28 @@ export class PokemonsComponent implements OnInit {
     this.audio .play();
   }
 
-  addToFavor(pokemon: any) : void{
+   addToFavor(pokemon: any): void {
+    if(this.containsInList(this.pokemonsListFavore, pokemon)){
+      return;
+    }
+    else if(this.containsInList(this.Pokemonsfavore,pokemon)){
+      this.pokemonsListFavore.push(pokemon);
+      return;
+    }
     this.pokemonFavoreEvent.emit(pokemon);
     this.pokemonsListFavore.push(pokemon);
   }
 
   contains(pokemon:any): boolean{
-    return !this.pokemonsListFavore.includes(pokemon);
+    return (!this.containsInList(this.pokemonsListFavore, pokemon)) || (!this.containsInList(this.Pokemonsfavore, pokemon));
   }
 
+  containsInList(list:any[], pokemon:any): boolean{
+    for (const p of list) {
+      if(p.name == pokemon.name){
+        return true;
+      }
+    }
+    return false;
+  }
 }
