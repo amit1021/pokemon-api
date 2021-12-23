@@ -2,23 +2,23 @@
 .main{
   background-color:  azure;
 }
-.header{
+.main .header{
   padding: 0;
   background: rgb(199, 196, 196);
   display: flex;
   justify-content: center;
 
 }
-.header .ImgPok{
+.main .header .ImgPok{
   width: 400px;
-
 }
-.favorites{
+
+.main .favorites{
   background-color: rgb(199, 196, 196);
-
+  text-align-last: right;
 }
-.favorites .buttonFav {
+
+.main .favorites .buttonFav {
   padding: 5px 10px;
   background-color: lavenderblush;
-
 }

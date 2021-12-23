@@ -15,8 +15,8 @@ export class AppComponent {
   receivePokemon($event:any){
     if(this.pokemonsListFavore.includes($event)){
       // const index: number = this.pokemonsListFavore.indexOf($event);
-      // this.pokemonsListFavore.slice(index, 1);
-      // console.log(this.pokemonsListFavore)
+      // delete this.pokemonsListFavore[index];
+
       return;
     }
     this.pokemonsListFavore.push($event);

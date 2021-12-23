@@ -150,7 +150,10 @@ export class PokemonsComponent implements OnInit {
   }
 
    addToFavor(pokemon: any): void {
-    if(this.containsInList(this.pokemonsListFavore, pokemon)){
+    if(this.containsInList(this.pokemonsListFavore, pokemon) && this.containsInList(this.Pokemonsfavore,pokemon)){
+      // const index: number = this.pokemonsListFavore.indexOf(pokemon);
+      // delete this.pokemonsListFavore[index];
+      // this.pokemonFavoreEvent.emit(pokemon);
       return;
     }
     else if(this.containsInList(this.Pokemonsfavore,pokemon)){
