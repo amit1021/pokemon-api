@@ -1,8 +1,8 @@
 <div class="main">
 
   <div class="favorites">
-    <button class="buttonFav" mat-raised-button (click)="onOpenFavorites()">
-      <mat-icon *ngIf="displayMain">favorite icon</mat-icon>
+    <button class="buttonFav" mat-raised-button (click)="onOpenComponent()">
+      <mat-icon *ngIf="displayPokemon">favorite icon</mat-icon>
       <mat-icon *ngIf="displayFavorites">arrow_forward</mat-icon>
     </button>
   </div>
@@ -11,13 +11,18 @@
     <img class="ImgPok" src="assets/Images/pokemon.jpg" alt="Italian Trulli">
   </header>
 
-  <div id="comp-render-Pokemon" *ngIf="displayMain">
-    <app-pokemons (pokemonFavoreEvent)="receivePokemon($event)"
-      (pokemonFavoreEventDelete)="receivePokemonToDelete($event)" [Pokemonsfavore]="pokemonsListFavore"
+  <div id="comp-render-Pokemon" *ngIf="displayPokemon">
+    <app-pokemons (pokemonFavorEvent)="receivePokemon($event)"
+      (pokemonFavorEventDelete)="receivePokemonToDelete($event)" [Pokemonsfavor]="pokemonsListFavor"
       [pokemonsList]="pokemonsList"> </app-pokemons>
   </div>
 
   <div id="comp-render-Favorites" *ngIf="displayFavorites">
-    <app-favorites [Pokemons]="pokemonsListFavore"></app-favorites>
+    <app-favorites [Pokemons]="pokemonsListFavor"></app-favorites>
   </div>
+
+
+  <video hidden="true" title="Advertisement" src="assets/audio/songCut.wav" autoplay="true" muted="muted">
+  </video>
+
 </div>

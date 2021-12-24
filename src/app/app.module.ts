@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule  } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import {MatIconModule} from '@angular/material/icon'
 import { AppComponent } from './app.component';
 import { PokemonsComponent } from './pokemons/pokemons.component';
@@ -27,7 +28,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
     BrowserAnimationsModule,
     MatIconModule,
   ],
-  providers: [],
+  providers: [PokemonsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

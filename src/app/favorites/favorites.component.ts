@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DataService } from '../services/data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
+import { PokemonsComponent } from '../pokemons/pokemons.component';
+
 
 @Component({
   selector: 'app-favorites',
@@ -19,48 +20,37 @@ export class FavoritesComponent implements OnInit {
   games: any[] = [];
   audio: any;
 
-  constructor(private dataService: DataService,
-    public dialog: MatDialog,) { }
+  constructor(public dialog: MatDialog, private pokemonsComponent: PokemonsComponent) { }
 
   ngOnInit(): void {
+
     this.Pokemons = this.Pokemons.filter(function (element) {
       return element !== undefined;
     });
+
   }
 
 
   onOpenDialog(pokemon: any): void {
+    // name
     this.name = pokemon.name;
-    //Type
+
+    // type
     this.type = pokemon.types[0].type.name;
+
     //moves
-    this.moves = []
-    for (let i = 0; i < pokemon.moves.length; i++) {
-      this.moves.push(pokemon.moves[i].move.name);
-    }
+    this.moves = this.pokemonsComponent.getMoves(pokemon)
+
     //locations
-    this.dataService.getDataByArea(pokemon.location_area_encounters).subscribe((response: any) => {
-      this.location = []
-      for (let i = 0; i < response.length; i++) {
-        this.location.push(response[i].location_area.name);
-      }
-    });
+    this.location = this.pokemonsComponent.getLocations(pokemon)
 
     //evolution
-    this.dataService.getDataEvolution(pokemon.id).subscribe((response: any) => {
-      this.evolves_to = []
-      for (let i = 0; i < response.chain.evolves_to.length; i++) {
-        this.evolves_to.push(response.chain.evolves_to[i].species.name);
-      }
-    });
+    this.evolves_to = this.pokemonsComponent.getEvolvesTo(pokemon);
+
     //games
-    this.games = []
-    for (let i = 0; i < pokemon.game_indices.length; i++) {
-      this.games.push(pokemon.game_indices[i].version.name);
-    }
+    this.games = this.pokemonsComponent.getGames(pokemon);
 
-
-    this.playSounds(this.name);
+    this.pokemonsComponent.playSounds(this.name);
 
     this.dialog.open(DialogComponent, {
       backdropClass: 'backdropBackground',
@@ -76,61 +66,12 @@ export class FavoritesComponent implements OnInit {
       }
     },
     );
+
     this.dialog.afterAllClosed.subscribe(result => {
-      this.audio.pause();
-      this.audio.currentTime = 0;
+      this.pokemonsComponent.PauseSounds();
     });
 
   }
 
-  playSounds(name: string) {
-    this.audio = new Audio();
-    switch (name) {
-      case "bulbasaur":
-        this.audio.src = "assets/audio/Bulbasaur.mp3";
-        break;
-      case "ivysaur":
-        this.audio.src = "assets/audio/Ivysaur.mp3";
-        break;
-      case "pikachu":
-        this.audio.src = "assets/audio/PIKACHU.wav";
-        break;
-      case "charmeleon":
-        this.audio.src = "assets/audio/Charmeleon.mp3";
-        break;
-
-      case "blastoise":
-        this.audio.src = "assets/audio/Blastoise.mp3";
-        break;
-      case "charizard":
-        this.audio.src = "assets/audio/Charizard.mp3";
-        break;
-      case "charmander":
-        this.audio.src = "assets/audio/Charmander.mp3";
-        break;
-      case "wartortle":
-        this.audio.src = "assets/audio/Wartortle.mp3";
-        break;
-      case "squirtle":
-        this.audio.src = "assets/audio/Squirtle.mp3";
-        break;
-      case "pidgeotto":
-        this.audio.src = "assets/audio/Pidgeot.mp3";
-        break;
-      case "butterfree":
-        this.audio.src = "assets/audio/Butterfree.mp3";
-        break;
-      case "caterpie":
-        this.audio.src = "assets/audio/Caterpie.wav";
-        break;
-      case "metapod":
-        this.audio.src = "assets/audio/Metapod.mp3";
-        break;
-      default:
-        break;
-    }
-    this.audio.load();
-    this.audio.play();
-  }
 
 }
