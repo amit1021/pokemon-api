@@ -92,7 +92,7 @@ export class PokemonsComponent implements OnInit {
     for (let i = 0; i < pokemon.moves.length; i++) {
       moves.push(pokemon.moves[i].move.name);
     }
-    return moves;
+    return moves.slice(1,51);
   }
 
   getLocations(pokemon: any): any {
