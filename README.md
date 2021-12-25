@@ -1,6 +1,5 @@
 # PokemonApi
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.  
 This project displays information about 151 Pokemon, the information displayed is taken from the API https://pokeapi.co
 
 ## Requirements
@@ -19,6 +18,6 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 To run Karma tests, please use the command ng test
 
-## Build
+## Version
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.  
