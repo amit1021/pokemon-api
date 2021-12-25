@@ -1,53 +1,50 @@
+<mat-dialog-content class="dialog">
 
-  <mat-dialog-content class="dialog" >
+  <div class="headerImg">
+    <img class="img" [src]="data.image" alt="Pokemon">
+    <h1 class="name">
+      {{data.name}}
+    </h1>
+  </div>
 
-    <div class="headerImg">
-      <img class="img" [src]="data.image" alt="Pokemon">
-      <h1 class="name" >
-        {{data.name}}
-      </h1>
+
+
+  <div class="details">
+    <div class="type" *ngIf="data?.type?.length > 0">
+      <a class="headerType">Types: </a>
+      <p class="typeFor" *ngFor="let g of data.type; let i = index">
+        <a *ngIf="i!=data.type.length-1">{{ g }}, </a>
+        <a *ngIf="i==data.type.length-1">{{ g }} </a>
+      </p>
     </div>
 
-
-
-<div class="details">
-
-    <div  class="type" >
-      <a class="headerType">Type: </a>
-      <a class="DataType">{{ data.type }}</a>
-        </div>
-
-
     <div class="moves" *ngIf="data?.moves?.length > 0">
-      <a class="headerMoves">Moves:   </a>
-      <p class="movesFor"  *ngFor="let move of data.moves; let i = index" >
-        <a *ngIf="i!=data.moves.length-1" >{{ move }} --></a>
-        <a *ngIf="i==data.moves.length-1" >{{ move }}</a>
+      <a class="headerMoves">Moves: </a>
+      <p class="movesFor" *ngFor="let move of data.moves; let i = index">
+        <a *ngIf="i!=data.moves.length-1">{{ move }} --></a>
+        <a *ngIf="i==data.moves.length-1">{{ move }}</a>
       </p>
     </div>
 
     <div class="location" *ngIf="data?.location?.length > 0">
-      <a class="headerLocation">Location:   </a>
+      <a class="headerLocation">Location: </a>
       <p class="locationFor" *ngFor="let location of data.location; let i = index">
-        <a *ngIf="i!=data.location.length-1" >{{ location }}, </a>
-        <a *ngIf="i==data.location.length-1" >{{ location }} </a>
+        <a *ngIf="i!=data.location.length-1">{{ location }}, </a>
+        <a *ngIf="i==data.location.length-1">{{ location }} </a>
       </p>
     </div>
 
     <div class="evolves" *ngIf="data?.evolves?.length > 0">
-    <a class="headerEvolves" >Evolves to:</a>
-    <li class="evolvesFor" *ngFor="let e of data.evolves">{{ e }}</li>
+      <a class="headerEvolves">Evolves to:</a>
+      <li class="evolvesFor" *ngFor="let e of data.evolves">{{ e }}</li>
     </div>
 
     <div class="games" *ngIf="data?.games?.length > 0">
-    <a class="headerGames">Games:   </a>
-    <p class="gamesFor" *ngFor="let g of data.games; let i = index">
-      <a *ngIf="i!=data.games.length-1" >{{ g }}, </a>
-      <a *ngIf="i==data.games.length-1" >{{ g }} </a>
-    </p>
+      <a class="headerGames">Games: </a>
+      <p class="gamesFor" *ngFor="let g of data.games; let i = index">
+        <a *ngIf="i!=data.games.length-1">{{ g }}, </a>
+        <a *ngIf="i==data.games.length-1">{{ g }} </a>
+      </p>
     </div>
   </div>
-  </mat-dialog-content>
-
-
-
+</mat-dialog-content>

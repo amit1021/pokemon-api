@@ -18,7 +18,7 @@ export class PokemonsComponent implements OnInit {
   @Input() pokemonsList: any[] = [];
 
   name!: string;
-  type!: string;
+  type:any[] = [];
   moves: any[] = [];
   location: any[] = [];
   evolves_to: any[] = [];
@@ -39,7 +39,7 @@ export class PokemonsComponent implements OnInit {
     this.name = pokemon.name;
 
     // type
-    this.type = pokemon.types[0].type.name;
+    this.type = this.getTypes(pokemon);
 
     // moves
     this.moves = this.getMoves(pokemon);
@@ -77,6 +77,13 @@ export class PokemonsComponent implements OnInit {
 
   }
 
+  getTypes(pokemon: any) {
+    let types: any = [];
+    for (let i = 0; i < pokemon.types.length; i++) {
+      types.push( pokemon.types[i].type.name);
+    }
+    return types;
+  }
 
   getMoves(pokemon: any) {
     let moves: any = [];
@@ -100,6 +107,9 @@ export class PokemonsComponent implements OnInit {
   getEvolvesTo(pokemon: any): any {
     let evolves_to: any = []
     this.dataService.getDataEvolution(pokemon.id).subscribe((response: any) => {
+      console.log("sdadas=>  " ,response);
+      console.log("pokemon=>  " ,pokemon);
+
       for (let i = 0; i < response.chain.evolves_to.length; i++) {
         evolves_to.push(response.chain.evolves_to[i].species.name);
       }

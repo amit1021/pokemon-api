@@ -13,7 +13,7 @@ export class FavoritesComponent implements OnInit {
   @Input() Pokemons: any[] = [];
 
   name!: string;
-  type!: string;
+  type:any[] = [];
   moves: any[] = [];
   location: any[] = [];
   evolves_to: any[] = [];
@@ -36,7 +36,7 @@ export class FavoritesComponent implements OnInit {
     this.name = pokemon.name;
 
     // type
-    this.type = pokemon.types[0].type.name;
+    this.type = this.pokemonsComponent.getTypes(pokemon);
 
     //moves
     this.moves = this.pokemonsComponent.getMoves(pokemon)
