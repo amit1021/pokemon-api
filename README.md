@@ -1,27 +1,24 @@
 # PokemonApi
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
+This project displays information about 151 Pokemon, the information displayed is taken from the API https://pokeapi.co
 
-## Development server
+## Requirements
+
+For development, you will only need Angular installed in your environement.
+
+## Getting started with the API
+
+Run git clone https://github.com/amit1021/pokemon-api.git to clone the project (or download the zip file).
+Run cd pokemon-api to get into the clone project.
+Run npm install to install the dependencies.
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Tests
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+To run Karma tests, please use the command ng test
 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
