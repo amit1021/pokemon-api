@@ -1,5 +1,8 @@
 <div class="main">
 
+  <video hidden="true" title="Advertisement" src="assets/audio/Pokemon.mp3" autoplay="true" muted="muted">
+  </video>
+
   <div class="favorites">
     <button class="buttonFav" mat-raised-button (click)="onOpenComponent()">
       <mat-icon *ngIf="displayPokemon">favorite icon</mat-icon>
@@ -20,9 +23,5 @@
   <div id="comp-render-Favorites" *ngIf="displayFavorites">
     <app-favorites [Pokemons]="pokemonsListFavor"></app-favorites>
   </div>
-
-
-  <video hidden="true" title="Advertisement" src="assets/audio/songCut.wav" autoplay="true" muted="muted">
-  </video>
 
 </div>

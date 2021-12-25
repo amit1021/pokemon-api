@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule  } from '@angular/material/dialog';
@@ -16,7 +16,6 @@ import { FavoritesComponent } from './favorites/favorites.component';
     PokemonsComponent,
     DialogComponent,
     FavoritesComponent,
-
   ],
   entryComponents:[
     DialogComponent
@@ -29,6 +28,8 @@ import { FavoritesComponent } from './favorites/favorites.component';
     MatIconModule,
   ],
   providers: [PokemonsComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+
 })
 export class AppModule { }

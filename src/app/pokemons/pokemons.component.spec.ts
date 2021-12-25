@@ -1,11 +1,10 @@
-import { ComponentFixture, TestBed, async, inject, tick, fakeAsync  } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async, inject, tick, fakeAsync } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { DataService } from '../services/data.service';
 import { PokemonsComponent } from './pokemons.component';
-import { MatDialogModule  } from '@angular/material/dialog';
 
 describe('PokemonsComponent', () => {
   let component: PokemonsComponent;
@@ -45,12 +44,49 @@ describe('PokemonsComponent', () => {
     expect(component.evolves_to).toBeDefined();
   });
 
-  // it('aaaaa', () => {
-  //   let pokemonList = []
-  //   dataService.getPokemons().forEach(element => {
-  //     pokemonList.push(element);
-  //   });
-  //   expect(pokemonList.length).toBe(151);
-  // });
+  it('should have a name to Be Defined', () => {
+    expect(component.name).toBeUndefined()
+  });
+
+  it('should have a type to Be Defined', () => {
+    expect(component.type).toBeUndefined();
+  });
+
+  it('should have a audio to Be Defined', () => {
+    expect(component.audio).toBeUndefined();
+  });
+
+
+  it('should have a onOpenDialog() to Throw Error', () => {
+    expect(component.onOpenDialog).toThrowError();
+  });
+
+  it('should have a onOpenDialog() to Be Instance Of function', () => {
+    expect(component.onOpenDialog).toBeInstanceOf(Function);
+  });
+
+  it('should have a getMoves() to Be Instance Of function', () => {
+    expect(component.getMoves).toBeInstanceOf(Function);
+  });
+
+  it('should have a getLocations() to Be Instance Of function', () => {
+    expect(component.getLocations).toBeInstanceOf(Function);
+  });
+
+  it('should have a getEvolvesTo() to Be Instance Of function', () => {
+    expect(component.getEvolvesTo).toBeInstanceOf(Function);
+  });
+
+  it('should have a getGames() to Be Instance Of function', () => {
+    expect(component.getGames).toBeInstanceOf(Function);
+  });
+
+  it('should have a playSounds() to Be Instance Of function', () => {
+    expect(component.playSounds).toBeInstanceOf(Function);
+  });
+
+  it('should have a PauseSounds() to Be Instance Of function', () => {
+    expect(component.PauseSounds).toBeInstanceOf(Function);
+  });
 
 });
