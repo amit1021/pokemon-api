@@ -1,6 +1,6 @@
 # PokemonApi
 
-This project displays information about 151 Pokemon, the information displayed is taken from the API https://pokeapi.co
+This project displays information about 151 Pokemons, the information displayed is taken from the API https://pokeapi.co
 
 ## Requirements
 
