@@ -17,6 +17,7 @@ export class FavoritesComponent implements OnInit {
   moves: any[] = [];
   location: any[] = [];
   evolves_to: any[] = [];
+  evolves_from: any[] = [];
   games: any[] = [];
   audio: any;
 
@@ -47,6 +48,8 @@ export class FavoritesComponent implements OnInit {
     //evolution
     this.evolves_to = this.pokemonsComponent.getEvolvesTo(pokemon);
 
+    this.evolves_from = this.pokemonsComponent.getEvolvesFrom(pokemon);
+
     //games
     this.games = this.pokemonsComponent.getGames(pokemon);
 
@@ -60,6 +63,7 @@ export class FavoritesComponent implements OnInit {
         moves: this.moves,
         location: this.location,
         evolves: this.evolves_to,
+        evolves_from: this.evolves_from,
         image: pokemon.sprites.front_default,
         games: this.games,
         pokemon: pokemon

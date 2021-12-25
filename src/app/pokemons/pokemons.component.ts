@@ -18,10 +18,11 @@ export class PokemonsComponent implements OnInit {
   @Input() pokemonsList: any[] = [];
 
   name!: string;
-  type:any[] = [];
+  type: any[] = [];
   moves: any[] = [];
   location: any[] = [];
   evolves_to: any[] = [];
+  evolves_from: any = [];
   games: any[] = [];
   audio: any;
   pokemonsListFavor: any[] = [];
@@ -50,9 +51,10 @@ export class PokemonsComponent implements OnInit {
     // evolution
     this.evolves_to = this.getEvolvesTo(pokemon);
 
+    this.evolves_from = this.getEvolvesFrom(pokemon);
+
     // games
     this.games = this.getGames(pokemon);
-
 
     this.playSounds(this.name);
 
@@ -64,9 +66,9 @@ export class PokemonsComponent implements OnInit {
         moves: this.moves,
         location: this.location,
         evolves: this.evolves_to,
+        evolves_from: this.evolves_from,
         image: pokemon.sprites.front_default,
         games: this.games,
-        // pokemon: pokemon
       }
     },
     );
@@ -80,7 +82,7 @@ export class PokemonsComponent implements OnInit {
   getTypes(pokemon: any) {
     let types: any = [];
     for (let i = 0; i < pokemon.types.length; i++) {
-      types.push( pokemon.types[i].type.name);
+      types.push(pokemon.types[i].type.name);
     }
     return types;
   }
@@ -96,7 +98,6 @@ export class PokemonsComponent implements OnInit {
   getLocations(pokemon: any): any {
     let location: any = [];
     this.dataService.getDataByArea(pokemon.location_area_encounters).subscribe((response: any) => {
-      this.location = []
       for (let i = 0; i < response.length; i++) {
         location.push(response[i].location_area.name);
       }
@@ -107,14 +108,21 @@ export class PokemonsComponent implements OnInit {
   getEvolvesTo(pokemon: any): any {
     let evolves_to: any = []
     this.dataService.getDataEvolution(pokemon.id).subscribe((response: any) => {
-      console.log("sdadas=>  " ,response);
-      console.log("pokemon=>  " ,pokemon);
-
       for (let i = 0; i < response.chain.evolves_to.length; i++) {
         evolves_to.push(response.chain.evolves_to[i].species.name);
       }
     });
     return evolves_to;
+  }
+
+  getEvolvesFrom(pokemon: any):any {
+    let evolves_from: any = []
+    this.dataService.getDataEvolutionFrom(pokemon.id).subscribe((response: any) => {
+      if (response.evolves_from_species != null) {
+        evolves_from.push(response.evolves_from_species.name);
+      }
+    });
+    return evolves_from;
   }
 
   getGames(pokemon: any): any {

@@ -51,7 +51,11 @@ describe('FavoritesComponent', () => {
   });
 
   it('should have a type to Be Defined', () => {
-    expect(component.type).toBeUndefined();
+    expect(component.type).toBeDefined();
+  });
+
+  it('should have a evolves_from to Be Defined', () => {
+    expect(component.evolves_from).toBeDefined();
   });
 
   it('should have a audio to Be Defined', () => {

@@ -39,6 +39,13 @@
       <li class="evolvesFor" *ngFor="let e of data.evolves">{{ e }}</li>
     </div>
 
+
+    <div class="evolves_from" *ngIf="data?.evolves_from?.length > 0">
+      <a class="headerEvolves_from">Evolves from:</a>
+      <p class="evolvesFor" *ngFor="let e of data.evolves_from">{{ e }}</p>
+    </div>
+
+
     <div class="games" *ngIf="data?.games?.length > 0">
       <a class="headerGames">Games: </a>
       <p class="gamesFor" *ngFor="let g of data.games; let i = index">

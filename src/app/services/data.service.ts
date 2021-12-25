@@ -21,7 +21,12 @@ export class DataService {
   getDataByArea(Area: string) {
     return this.http.get(`${Area}`);
   }
+
   getDataEvolution(id: string) {
     return this.http.get(`https://pokeapi.co/api/v2/evolution-chain/${id}`);
+  }
+
+   getDataEvolutionFrom(id: string) {
+    return this.http.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
   }
 }
